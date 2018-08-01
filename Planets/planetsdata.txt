@@ -1,0 +1,9 @@
+mercury;2439.7;3.3022e23;mercury2.gif
+venus;6051.8;4.8685e24;venus2.gif
+earth;6378.1;5.9736e24;earth2.gif
+mars;3396.2;6.4185e23;mars2.gif
+jupiter;71492;1.8986e27;jupiter2.gif
+saturn;60268;5.6846e26;saturn2.gif
+uranus;25559;8.6810e25;uranus2.gif
+neptune;24764;10.243e25;neptune2.gif
+pluto;1195;1.25e22;pluto2.gif
