@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 """
 - THIS CODE IS DESIGN TO RUN IN THE TERMINAL -
 
