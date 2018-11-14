@@ -183,6 +183,7 @@ if __name__ == '__main__':
             more_or_no = input("'More' for another round. 'Quit' to quit.\n").lower()
             if more_or_no == 'quit':
                 Play = False
+                break
             elif more_or_no == 'more':
                 break
             else:
