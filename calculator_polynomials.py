@@ -30,7 +30,7 @@ def create_polynomial():
     polynomial = sp.sympify('0')
     for n, a in enumerate(coefficients):
         polynomial = polynomial + a * x ** n
-
+    
     for n, a in enumerate(coefficients):
         coef_value = get_integer(MIN, MAX, '> Coefficient of a_%i' % n)
         if coef_value:
@@ -176,4 +176,3 @@ if __name__ == '__main__':
     MAX = 1000
     MIN = -MAX
     main()
-

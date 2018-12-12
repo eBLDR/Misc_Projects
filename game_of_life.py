@@ -23,29 +23,29 @@ import os
 
 class Universe:
     """ Environment object, where the cells 'live'. """
-
+    
     def __init__(self, rows, cols, chance_alive, max_generations):
         self.cells_alive = 0
         self.generation = range(1, max_generations + 1)
         self.chance_alive = chance_alive  # initial factor of a cell being alive
         self.environment = self.initial_generation(rows, cols)
-
+    
     @staticmethod
     def initial_status(factor):
         """ Decides if a cell is alive in the first generation. """
-
+        
         n = random.randint(1, 100)
         if n <= factor:
             return True
-
+    
     def initial_generation(self, rows, cols):
         """ Creates the initial array. """
-
+        
         array = []
         for i in range(rows):
             array_row = []
             for j in range(cols):
-                if j == 0 or i == 0 or (i == rows-1) or (j == cols-1):  # borders
+                if j == 0 or i == 0 or (i == rows - 1) or (j == cols - 1):  # borders
                     array_row.append(-1)
                 else:
                     status = self.initial_status(self.chance_alive)  # initial cell, alive or dead?
@@ -55,7 +55,7 @@ class Universe:
                     else:
                         array_row.append(0)
             array.append(array_row)
-
+        
         return array
 
 
@@ -64,11 +64,11 @@ def display_grid(univ, gen):
     # - border
     . - alive cell
       - dead cell """
-
+    
     os.system("clear")
-
-    print("Game of Life by BLDR! -- Generation: {:4} -- Cells alive: {:3}".format(gen, univ.cells_alive))
-
+    
+    print("Game of Life by eBLDR! -- Generation: {:4} -- Cells alive: {:3}".format(gen, univ.cells_alive))
+    
     array = univ.environment
     for i in range(len(array)):
         for j in range(len(array[i])):
@@ -83,12 +83,12 @@ def display_grid(univ, gen):
 
 def process_next_gen(univ):
     """ Creates the array for the following generation. """
-
+    
     current = univ.environment
     next_gen = []
-
+    
     univ.cells_alive = 0  # restarting the counter
-
+    
     for i in range(len(current)):
         next_row = []
         for j in range(len(current[i])):
@@ -100,20 +100,20 @@ def process_next_gen(univ):
                 if cell_status == 1:
                     univ.cells_alive += 1
         next_gen.append(next_row)
-
+    
     univ.environment = next_gen
 
 
 def assess_neighbours(x, y, current):
     """ Assesses the future of the cell depending on surrounding neighbours. """
-
+    
     neighbour_cells = 0
-    for i in range(x-1, x+2):  # to assess only the surrounding 3x3 grid
-        for j in range(y-1, y+2):
+    for i in range(x - 1, x + 2):  # to assess only the surrounding 3x3 grid
+        for j in range(y - 1, y + 2):
             # excluding itself and borders
-            if not(i == x and j == y) and current[i][j] != -1:
+            if not (i == x and j == y) and current[i][j] != -1:
                 neighbour_cells += current[i][j]  # will add 1 if there is a cell, 0 otherwise
-
+    
     # RULE 1, death due to underpopulation
     if current[x][y] == 1 and neighbour_cells < 2:
         return 0
@@ -145,24 +145,24 @@ def get_data(min_, max_, prompt):
 
 def main():
     """ Main loop, collects data for the initial conditions and runs the program. """
-
+    
     # input some variables
     init_factor = get_data(1, 100, "Chances of being alive in the first generation expressed in %: ")
     max_gen = get_data(1, 10000, "Number of generations to display: ")
-
+    
     # creating the universe object, including first generation of cells
     universe = Universe(ROWS, COLUMNS, init_factor, max_gen)
-
+    
     for gen in universe.generation:
         # displaying current distribution
         display_grid(universe, gen)
-
+        
         # calculating next distribution
         process_next_gen(universe)
-
+        
         # adding some delay
         time.sleep(DELAY)
-
+        
         # manual forwarding -- DISABLED --
         # input("Press <return> to display next generation.")
 

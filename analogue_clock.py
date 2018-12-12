@@ -26,11 +26,11 @@ def draw_clock(turt, distance):
     angle = 0
     while angle < 360:
         draw_minute_mark(turt, distance, angle)
-        angle += 360/60
+        angle += 360 / 60
     angle_h = 0
     while angle_h < 360:
         draw_hour_mark(turt, distance, angle_h)
-        angle_h += 360/12
+        angle_h += 360 / 12
 
 
 def draw_hands(turt, thickness, length, angle):
@@ -67,21 +67,19 @@ draw_clock(atlas, 200)
 
 # Looping to draw clock's hands
 while True:
-
     time_now = datetime.now()  # Getting time
-
+    
     # Finding angles for hands
     angle_hour = (time_now.hour * (-30) + 90) + time_now.minute / (-2)
     angle_minute = time_now.minute * (-6) + 90
     angle_second = time_now.second * (-6) + 90
-
+    
     # Drawing
     draw_hands(cronos, '10', 120, angle_hour)
     draw_hands(cronos, '4', 180, angle_minute)
     draw_hands(cronos, '1', 180, angle_second)
-
+    
     time.sleep(0.8)  # May differ for optimal performance depending on hardware
     cronos.clear()
-
+    
     window.listen()  # It will raise a terminator error on exit
-

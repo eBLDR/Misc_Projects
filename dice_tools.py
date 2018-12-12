@@ -8,7 +8,7 @@ def dice_roll(dices=1, faces=6, sum_=False):
     results.sort()
     if sum_:
         results.append(sum(results))
-
+    
     return results
 
 
@@ -16,7 +16,7 @@ def dice_greater_or_equal_than(dice_set, n):
     count = 0
     for dice in dice_set:
         count += 1 if dice >= n else 0
-
+    
     return count
 
 
@@ -32,4 +32,3 @@ for i in range(10):
     print(compare_dices(s_1, s_2))
 
 print(dice_greater_or_equal_than(dice_roll(dices=10), 5))
-

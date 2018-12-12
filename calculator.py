@@ -27,7 +27,7 @@ def delete():
     return 0
 
 
-def set():
+def set_():
     variable = get_integer(MIN, MAX, '> Value of A: ')
     return variable
 
@@ -66,19 +66,19 @@ def power(x, y):
 
 def calculator(var1, var2):
     cmd = ''
-
+    
     while cmd != 'e':
         os.system('clear')
         display_menu(var1, var2)
         cmd = input('> Action: ')
-
+        
         if cmd in ['e', 'E']:
             print('Exited!')
             sys.exit()
         elif cmd == '0':
             var1 = delete()
         elif cmd == '1':
-            var1 = set()
+            var1 = set_()
         elif cmd == '2':
             var1, var2 = swap(var1, var2)
         elif cmd == '3':
@@ -97,7 +97,7 @@ def calculator(var1, var2):
             var2 = power(var1, var2)
         else:
             print('Invalid option.')
-
+    
     return var1, var2
 
 
@@ -125,4 +125,3 @@ if __name__ == '__main__':
     MIN = -MAX
     A, B = 0, 0
     A, B = calculator(A, B)
-

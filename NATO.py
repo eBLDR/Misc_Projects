@@ -1,4 +1,3 @@
-
 # NATO Phonetic Alphabet
 
 import random
@@ -19,11 +18,11 @@ if len(abc) == len(nato):
         NATO[letter] = word
 
 
-def play(dic, keyList):
-    Quit = False
+def play(dic, key_list):
+    quit_ = False
     points = 0
-    for key in keyList:
-        if Quit:
+    for key in key_list:
+        if quit_:
             break
         while True:
             answer = input('{} is '.format(key)).upper()
@@ -31,13 +30,13 @@ def play(dic, keyList):
                 print(dic[key])
                 break
             elif answer == 'QUIT':
-                Quit = True
+                quit_ = True
                 break
             elif answer == dic[key]:
                 break
     else:
         end_game(points)
-        
+
 
 def end_game(points):
     print('COMPLETED\n{0:2} of {1:2}'.format(points, TOTAL_VALUES))

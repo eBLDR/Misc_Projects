@@ -56,7 +56,7 @@ width = 500
 height = 500
 screen.setup(width, height)
 screen.title('Planets Data')
-screen.setworldcoordinates(-width/2, -height/2, width/2, height/2)
+screen.setworldcoordinates(-width / 2, -height / 2, width / 2, height / 2)
 screen.bgcolor('black')
 
 builder = turtle.Turtle()

@@ -86,16 +86,16 @@ def end(stats):
         print('\nNo more attempts, calculating IQ...')
     elif stats.attempts != 0:
         print('\nEnd ot test, calculating IQ...')
-
+    
     time.sleep(2)
-
+    
     print('\nAproximate Comparative IQ table:')
     print('\n1   -> Stone\n5   -> Slug\n32  -> Bonsai\n69  -> Popcorn')
     print('105 -> PC\n150 -> NOT YOU\n210 -> Nemo')
     input('\nENTER to show IQ...')
-
+    
     print('\nYour exactly IQ is: ', stats.iq)
-
+    
     print('\nSEE YOU!')
     input('\n\tENTER TO EXIT!')
 
@@ -110,4 +110,3 @@ round_02(game_stats)
 round_03(game_stats)
 round_04(game_stats)
 end(game_stats)
-
