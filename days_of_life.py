@@ -33,7 +33,7 @@ def get_user_birth_day(today, year, month):
                 
                 # Check if it was leap year
                 leap_year = True if year % 4 == 0 else False
-                max_days = max_days[0] if not leap_year else max_days[1]
+                max_days = max_days[1] if leap_year and month == 2 else max_days[0]
                 
                 if 1 <= day <= max_days:
                     return day
