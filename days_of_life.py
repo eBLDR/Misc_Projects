@@ -90,23 +90,23 @@ def calculate_life_expectancy(days_old):
     
     def get_gender():
         while True:
-            gender = input('\nMale [m] or female [f]:\n> ').lower()
+            gender = input('\nGender, male [m] or female [f]:\n> ').lower()
             if gender in ['m', 'f']:
                 return gender
     
     user_country = get_country()
     user_gender = get_gender()
     life_expectancy_years = life_expectancy_mapper[user_country][user_gender]
-    life_expectancy_range = [round(life_expectancy_years * 365 * 0.9), round(life_expectancy_years * 365 * 1.1)]
+    life_expectancy_range = [round(life_expectancy_years * 365.25 * 0.9), round(life_expectancy_years * 365.25 * 1.1)]
     life_expectancy_left_range = [days - days_old for days in life_expectancy_range]
     life_expectancy_left_min = life_expectancy_left_range[0] if life_expectancy_left_range[0] > 0 else 0
     life_expectancy_left_max = life_expectancy_left_range[1] if life_expectancy_left_range[1] > 0 else '?'
-    life_expectancy_consumed_percentage_range = [round(days_old * 100 / days, 3) for days in life_expectancy_range]
+    life_expectancy_consumed_percentage_range = [round(days_old * 100 / days, 2) for days in life_expectancy_range]
     life_expectancy_consumed_percentage_min = life_expectancy_consumed_percentage_range[1] if life_expectancy_consumed_percentage_range[1] < 100 else '?'
     life_expectancy_consumed_percentage_max = life_expectancy_consumed_percentage_range[0] if life_expectancy_consumed_percentage_range[0] < 100 else 100
     
-    print('\nLife expectancy in {} is {} years, that is a range (+/-10%) from {} to {} days of life.'.format(user_country.title(), life_expectancy_years, life_expectancy_range[0], life_expectancy_range[1]))
-    print('You have used {} days of life, then you have an estimation of \033[1;33m{}\033[0m to \033[1;33m{}\033[0m days more for living.'.format(days_old, life_expectancy_left_min, life_expectancy_left_max))
+    print('\nLife expectancy for a {} in {} is \033[1m{}\033[0m years, that is a range (+/-10%) from \033[1m{}\033[0m to \033[1m{}\033[0m days of life.'.format('male' if user_gender == 'm' else 'female', user_country.title(), life_expectancy_years, life_expectancy_range[0], life_expectancy_range[1]))
+    print('You have used {} days of life, therefore you have an estimation of \033[1;33m{}\033[0m to \033[1;33m{}\033[0m more days for living.'.format(days_old, life_expectancy_left_min, life_expectancy_left_max))
     print('In percentage, this means that you have consumed already \033[1;33m{}%\033[0m to \033[1;33m{}%\033[0m of your lifespan...'.format(life_expectancy_consumed_percentage_min, life_expectancy_consumed_percentage_max))
 
 
@@ -136,10 +136,14 @@ def run():
             break
     
     # Life expectancy
-    flow = input('\nDo you want to know what\'s your life expectancy [y/*]?\n> ').lower()
-    if flow == 'y':
-        calculate_life_expectancy(days_old)
-        input()
+    while True:
+        flow = input('\nDo you want to know what\'s your life expectancy [y/n]?\n> ').lower()
+        if flow == 'y':
+            calculate_life_expectancy(days_old)
+            input()
+            break
+        elif flow == 'n':
+            break
 
 
 month_mapper = {
