@@ -79,7 +79,7 @@ def calculate_specific_date(today, birth_date):
     display_date(today, days_old, birth_date + datetime.timedelta(days=days_old))
 
 
-def calculate_life_expectancy(days_old):
+def calculate_life_expectancy(today, days_old):
     def get_country():
         while True:
             country = input('\nCountry:\n> ').lower()
@@ -98,16 +98,19 @@ def calculate_life_expectancy(days_old):
     user_gender = get_gender()
     life_expectancy_years = life_expectancy_mapper[user_country][user_gender]
     life_expectancy_range = [round(life_expectancy_years * 365.25 * 0.9), round(life_expectancy_years * 365.25 * 1.1)]
-    life_expectancy_left_range = [days - days_old for days in life_expectancy_range]
-    life_expectancy_left_min = life_expectancy_left_range[0] if life_expectancy_left_range[0] > 0 else 0
-    life_expectancy_left_max = life_expectancy_left_range[1] if life_expectancy_left_range[1] > 0 else '?'
+    life_expectancy_days_left_range = [days - days_old for days in life_expectancy_range]
+    life_expectancy_days_left_min = life_expectancy_days_left_range[0] if life_expectancy_days_left_range[0] > 0 else 0
+    life_expectancy_days_left_max = life_expectancy_days_left_range[1] if life_expectancy_days_left_range[1] > 0 else '?'
     life_expectancy_consumed_percentage_range = [round(days_old * 100 / days, 2) for days in life_expectancy_range]
     life_expectancy_consumed_percentage_min = life_expectancy_consumed_percentage_range[1] if life_expectancy_consumed_percentage_range[1] < 100 else '?'
     life_expectancy_consumed_percentage_max = life_expectancy_consumed_percentage_range[0] if life_expectancy_consumed_percentage_range[0] < 100 else 100
+    estimated_die_range_min = today + datetime.timedelta(days=life_expectancy_days_left_min)
+    estimated_die_range_max = today + datetime.timedelta(days=life_expectancy_days_left_max)
     
     print('\nLife expectancy for a {} in {} is \033[1m{}\033[0m years, that is a range (+/-10%) from \033[1m{}\033[0m to \033[1m{}\033[0m days of life.'.format('male' if user_gender == 'm' else 'female', user_country.title(), life_expectancy_years, life_expectancy_range[0], life_expectancy_range[1]))
-    print('You have used {} days of life, therefore you have an estimation of \033[1;33m{}\033[0m to \033[1;33m{}\033[0m more days for living.'.format(days_old, life_expectancy_left_min, life_expectancy_left_max))
+    print('You have used {} days of life, therefore you have an estimation of \033[1;33m{}\033[0m to \033[1;33m{}\033[0m more days for living.'.format(days_old, life_expectancy_days_left_min, life_expectancy_days_left_max))
     print('In percentage, this means that you have consumed already \033[1;33m{}%\033[0m to \033[1;33m{}%\033[0m of your lifespan...'.format(life_expectancy_consumed_percentage_min, life_expectancy_consumed_percentage_max))
+    print('Based on the estimation, you are likely to die anytime from \033[1;31m{}\033[0m to \033[1;31m{}\033[0m!'.format(estimated_die_range_min, estimated_die_range_max))
 
 
 def display_date(today, days_old, date):
@@ -139,7 +142,7 @@ def run():
     while True:
         flow = input('\nDo you want to know what\'s your life expectancy [y/n]?\n> ').lower()
         if flow == 'y':
-            calculate_life_expectancy(days_old)
+            calculate_life_expectancy(today, days_old)
             input()
             break
         elif flow == 'n':
