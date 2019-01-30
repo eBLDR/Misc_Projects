@@ -66,11 +66,13 @@ for racer in racers:
 racing = True
 while racing:
     for racer in racers:
-        meters_in_turn = randint(1, 5)
+        meters_in_turn = randint(1, 10)
         racer.forward(meters_in_turn)
         racer.meters_covered += meters_in_turn
         if racer.meters_covered > race_distance:
             racing = False
-            winner = str(racer)
+            winner = str(racer.color()[0])
+
+            print('The winner is {}!'.format(winner))
 
 t.done()  # to wait until manually close the screen
