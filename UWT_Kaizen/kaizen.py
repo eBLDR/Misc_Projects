@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+# -*- coding: utf-8 -*-
 import argparse
 import os
 import random
@@ -40,7 +42,7 @@ class Kaizen:
             print('Let\'s KAIZEN!')
 
         while True:
-            time.sleep(self.timedelta)
+            time.sleep(self.timedelta_seconds)
             self.round()
 
     def round(self):
