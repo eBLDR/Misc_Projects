@@ -49,8 +49,8 @@ def battle_simulation(a, d):
 
 
 if __name__ == '__main__':
-    number_attackers = 1
-    number_defenders = 4
+    number_attackers = 7
+    number_defenders = 6
     result = {
         'Attack': 0,
         'Defense': 0
