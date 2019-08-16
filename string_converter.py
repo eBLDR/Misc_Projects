@@ -3,16 +3,16 @@
 
 def snake_to_camel(snake_string):
     result = ''
-    next_upper = False
+    capitalize = False
 
     for char in snake_string:
         if char == '_':
-            next_upper = True
+            capitalize = True
             continue
 
-        if next_upper:
+        if capitalize:
             result += char.upper()
-            next_upper = False
+            capitalize = False
         else:
             result += char
 
