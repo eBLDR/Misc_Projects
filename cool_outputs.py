@@ -1,7 +1,33 @@
+import random
 import string
+# import sys
 from os import system
 from time import sleep
-import random
+
+
+def progress_bar(blocks=50):
+    """
+    Dynamic progress bar.
+    """
+    # blocks_delta = int(100 / blocks + 1)
+    percentage_delta = int(100 / blocks)
+    for i in range(1, blocks + 1):
+        # Using carriage return "\r" to replace last printed line
+        output = '\r[{blocks}{arrow}{blank}] {percentage}%'.format(
+            blocks='=' * i,
+            arrow='>' if i < blocks else '',
+            blank=' ' * (blocks - i),
+            percentage=percentage_delta * i
+        )
+
+        print(output, end='')
+
+        # Using sys.stdout
+        # sys.stdout.write('\r')
+        # sys.stdout.write('[{:20}] {}%'.format('=' * i, 5 * i))
+        # sys.stdout.flush()
+
+        sleep(0.25)
 
 
 def stars(times=10):
@@ -63,3 +89,7 @@ def fill_with_char(char='#', times=2500):
     for i in range(1, times):
         print(char * i)
         sleep(1 / i)
+
+
+if __name__ == '__main__':
+    progress_bar()
