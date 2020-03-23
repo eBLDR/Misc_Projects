@@ -142,19 +142,3 @@ def swapcase_(string):
         r += c.upper() if c.islower() else c.lower()
 
     return r
-
-
-test_l = [4, 8, 32, 1, -1, 4]
-test_s = 'hOLA3aaap kaaApk'
-
-# print(sorted_(test_l))
-# print(sorted_(test_s))
-# print(sorted_(test_l, reverse=True))
-# print(sorted_(test_s, reverse=True))
-#
-# print(remove_(test_l, 32))
-# print(remove_(test_l, 4))
-# print(remove_(test_s, 'o'))
-
-print(pop_(test_l, index=5))
-print(swapcase_(test_s))
