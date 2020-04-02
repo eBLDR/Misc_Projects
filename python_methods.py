@@ -1,7 +1,7 @@
 # Custom implementation of some python built-in methods for collections
 
 
-# BUILT-IN METHODS
+# GLOBAL NAMESPACE METHODS
 def any_(collection):
     for v in collection:
         if bool(v):
@@ -83,6 +83,7 @@ def sorted_(collection, reverse=False):
     return r
 
 
+# CLASS METHODS
 def count_(collection, item):
     r = 0
     for v in collection:
@@ -93,30 +94,59 @@ def count_(collection, item):
 
 
 def index_(collection, item):
+    if item not in collection:
+        raise ValueError
+
     for i, v in enumerate(collection):
         if v == item:
             return i
 
 
-# LIST METHODS
+# LIST TYPE
 def pop_(collection, index: int = -1):
     if index >= len(collection):
         raise IndexError
 
-    r = collection[:index]
+    r = collection[index]
+    tmp = []
 
-    if index != -1:
-        r += collection[index + 1:]
+    deleted = False
+    for i, v in enumerate(collection):
+        if not deleted and i == index:
+            deleted = True
+            continue
+
+        tmp.append(v)
+
+    for i, v in enumerate(tmp):
+        collection[i] = v
+
+    del collection[-1]
 
     return r
 
 
 def remove_(collection, item):
-    i = collection.index(item)
-    return collection[:i] + collection[i + 1:]
+    if item not in collection:
+        raise ValueError
+
+    tmp = []
+
+    deleted = False
+    for v in collection:
+        if not deleted and v == item:
+            deleted = True
+            continue
+
+        tmp.append(v)
+
+    for i, v in enumerate(tmp):
+        collection[i] = v
+
+    del collection[-1]
 
 
-# STRING METHODS
+# STRING TYPE
 def replace_(string, old_item, new_item):
     r = ''
     for c in string:
@@ -130,7 +160,7 @@ def title_(string):
     r = ''
     cap = True  # First char is always capitalized
     for c in string:
-        r += c.upper() if cap else c
+        r += c.upper() if cap else c.lower()
         cap = bool(c == ' ')
 
     return r
@@ -142,3 +172,36 @@ def swapcase_(string):
         r += c.upper() if c.islower() else c.lower()
 
     return r
+
+
+list_sample = [4, 0, -5, 12, 1, -99, 7]
+ref_value = 12
+ref_index = 1
+list_tmp_ = list_sample.copy()
+string_sample = 'Do not MESS with a FuLLy grown Python!'
+ref_char = 'o'
+new_char = 'u'
+
+# DO NOT EDIT - All the comparisons below should return True
+print(f'any: {any(list_sample) == any_(list_sample)}')
+print(f'all: {all(list_sample) == all_(list_sample)}')
+print(f'len: {len(list_sample) == len_(list_sample)}')
+print(f'min: {min(list_sample) == min_(list_sample)}')
+print(f'max: {max(list_sample) == max_(list_sample)}')
+print(f'sum: {sum(list_sample) == sum_(list_sample)}')
+print(f'reversed: {list(reversed(list_sample)) == list(reversed_(list_sample))}')
+print(f'sorted: {sorted(list_sample) == sorted_(list_sample)}')
+print(f'count: {list_sample.count(ref_value) == count_(list_sample, ref_value)}')
+print(f'index: {list_sample.index(ref_value) == index_(list_sample, ref_value)}')
+
+# pop method
+print(f'pop - return: {list_tmp_.pop(ref_index) == pop_(list_sample, ref_index)}')
+print(f'pop - object: {list_tmp_ == list_sample}')
+
+# remove method
+print(f'remove - return: {list_tmp_.remove(ref_value) == remove_(list_sample, ref_value)}')
+print(f'remove - object: {list_tmp_ == list_sample}')
+
+print(f'replace: {string_sample.replace(ref_char, new_char) == replace_(string_sample, ref_char, new_char)}')
+print(f'title: {string_sample.title() == title_(string_sample)}')
+print(f'swapcase: {string_sample.swapcase() == swapcase_(string_sample)}')
