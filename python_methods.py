@@ -110,10 +110,8 @@ def pop_(collection, index: int = -1):
     r = collection[index]
     tmp = []
 
-    deleted = False
     for i, v in enumerate(collection):
-        if not deleted and i == index:
-            deleted = True
+        if i == index:
             continue
 
         tmp.append(v)
@@ -150,8 +148,7 @@ def remove_(collection, item):
 def replace_(string, old_item, new_item):
     r = ''
     for c in string:
-        n = new_item if c == old_item else c
-        r += n
+        r += new_item if c == old_item else c
 
     return r
 
@@ -174,11 +171,11 @@ def swapcase_(string):
     return r
 
 
-list_sample = [4, 0, -5, 12, 1, -99, 7]
+list_sample = [4, 0, -5, 12, 1, -99, 7, 12]
 ref_value = 12
 ref_index = 1
 list_tmp_ = list_sample.copy()
-string_sample = 'Do not MESS with a FuLLy grown Python!'
+string_sample = 'do not MESS with a FuLLy grown Python!'
 ref_char = 'o'
 new_char = 'u'
 
