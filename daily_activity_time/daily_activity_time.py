@@ -1,6 +1,7 @@
 """
 Times are expressed in minutes.
 """
+import argparse
 import csv
 import os
 
@@ -28,19 +29,17 @@ class Activity:
 
 
 class TimeUse:
-    # Mode `auto` for reading csv file, manual user input otherwise.
-    auto = True
+    def __init__(self, input_filename, auto=True, display_unassigned=True):
+        # Mode `auto` for reading csv file, manual user input otherwise.
+        self.auto = auto
 
-    # Enable to generate "unassigned" activity to represent unassigned time
-    display_unassigned = True
+        # Enable to generate "unassigned" activity to represent unassigned time
+        self.display_unassigned = display_unassigned
 
-    def __init__(self):
-        self.file_manager = FileManager()
+        self.file_manager = FileManager(input_filename)
 
         self.user_name = ''
-
         self.minutes_available = DAILY_MINUTES
-
         self.activities = []
 
     def run(self):
@@ -139,8 +138,14 @@ class TimeUse:
 
 class FileManager:
     cwd = os.getcwd()
-    input_filename = 'daily_activity_time.csv'
-    output_filename = 'daily_activity_time_{title}.svg'
+
+    def __init__(self, input_filename):
+        self.input_filename = input_filename
+        self.output_filename = self.convert_filename_to_svg(input_filename)
+
+    @staticmethod
+    def convert_filename_to_svg(filename):
+        return os.path.splitext(filename)[0] + '.svg'
 
     def read_csv(self):
         filepath = os.path.join(self.cwd, self.input_filename)
@@ -161,13 +166,43 @@ class FileManager:
                 activity.label, activity.minutes,
             )
 
-        filepath = os.path.join(
-            self.cwd,
-            self.output_filename.format(title=title),
+        pie_chart.render_to_file(
+            os.path.join(
+                self.cwd,
+                self.output_filename,
+            ),
         )
-        pie_chart.render_to_file(filepath)
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Daily Activity Time')
+    parser.add_argument('file', help='Input csv file')
+    parser.add_argument(
+        '-m',
+        '--manual',
+        help='Enable to get data from user input instead of csv file',
+        action='store_true',
+    )
+    parser.add_argument(
+        '-hu',
+        '--hide_unassigned',
+        help='Enable to hide auto-generated "unassigned" activity',
+        action='store_true',
+    )
+
+    args = parser.parse_args()
+    input_filename = args.file
+    auto = not args.manual
+    display_unassigned = not args.hide_unassigned
+
+    time_use = TimeUse(
+        input_filename,
+        auto=auto,
+        display_unassigned=display_unassigned,
+    )
+
+    time_use.run()
 
 
 if __name__ == '__main__':
-    time_use = TimeUse()
-    time_use.run()
+    main()
