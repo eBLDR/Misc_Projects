@@ -33,7 +33,7 @@ class Activity:
         self.label = label
         self.minutes = minutes
         self.category = category
-        self.daily_percentage = minutes * 100 / DAILY_MINUTES
+        self.daily_percentage = round(minutes * 100 / DAILY_MINUTES, 1)
 
     @classmethod
     def from_dict(cls, dict_data):
@@ -179,7 +179,7 @@ class TimeUse:
         if not self.group_by_category:
             for activity in self.activities:
                 pie_chart.add(
-                    activity.label, activity.minutes,
+                    activity.label, activity.daily_percentage,
                 )
 
         else:
@@ -195,14 +195,14 @@ class TimeUse:
             ):
                 values.append(
                     {
-                        'value': activity.minutes,
+                        'value': activity.daily_percentage,
                         'label': activity.label,
                     }
                 )
 
             pie_chart.add(
                 title=category,
-                values=values
+                values=values,
             )
 
 
