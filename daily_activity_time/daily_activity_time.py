@@ -39,7 +39,7 @@ class Activity:
     def from_dict(cls, dict_data):
         return cls(
             label=dict_data.get('label'),
-            minutes=int(dict_data.get('minutes', 0)),
+            minutes=round(float(dict_data.get('minutes', 0)), 2),
             category=dict_data.get('category'),
         )
 
