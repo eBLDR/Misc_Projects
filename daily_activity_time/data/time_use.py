@@ -3,16 +3,15 @@ Times are expressed in minutes.
 
 CSV file format:
 
-label,minutes
-label1,minutes1
-label2,minutes2
+label[str],category[str],flag[bool],minutes[int/float]
+label1,category1,true,minutes1
+label2,category1,false,minutes2
 ...,...
 """
-import argparse
-import csv
-import os
-
 import pygal
+from data.activity import Activity, ActivityList
+from data.constants import DAILY_MINUTES
+from data.file_manager import FileManager
 from pygal.style import NeonStyle as Style
 
 # Chart config
@@ -20,43 +19,10 @@ config = pygal.Config()
 config.style = Style
 config.show_legend = True
 
-DAILY_MINUTES = 1440
-
 
 class TimeExceededException(Exception):
     def __init__(self, used_time, max_time):
         self.msg = f'Used time ({used_time}) exceeds max possible time ({max_time})'
-
-
-class Activity:
-    def __init__(self, label, minutes, category=None):
-        self.label = label
-        self.minutes = minutes
-        self.category = category
-        self.daily_percentage = round(minutes * 100 / DAILY_MINUTES, 1)
-
-    @classmethod
-    def from_dict(cls, dict_data):
-        return cls(
-            label=dict_data.get('label'),
-            minutes=round(float(dict_data.get('minutes', 0)), 2),
-            category=dict_data.get('category'),
-        )
-
-
-class ActivityList(list):
-    def __init__(self):
-        super().__init__()
-        self.categories = set()
-
-    def append(self, new_object):
-        super().append(new_object)
-        self.categories.add(new_object.category)
-
-    def get_all_items_by_category(self, category):
-        return [
-            object_ for object_ in self if object_.category == category
-        ]
 
 
 class TimeUse:
@@ -65,16 +31,12 @@ class TimeUse:
             input_filename,
             auto=True,
             display_unassigned=True,
-            group_by_category=False,
     ):
         # Mode `auto` for reading csv file, manual user input otherwise.
         self.auto = auto
 
         # Enable to generate "unassigned" activity to represent unassigned time
         self.display_unassigned = display_unassigned
-
-        # Enable to render a multi-series pie chart grouping by category
-        self.group_by_category = group_by_category
 
         self.file_manager = FileManager(input_filename)
 
@@ -99,9 +61,7 @@ class TimeUse:
         if self.display_unassigned:
             self.generate_unassigned_time_activity()
 
-        self.file_manager.generate_chart_file(
-            self.generate_chart_data(),
-        )
+        self.generate_data_charts()
 
     def get_user_name(self):
         while not self.user_name:
@@ -172,22 +132,33 @@ class TimeUse:
         for activity in self.activities:
             print(f'{activity.label}: {activity.minutes}')
 
-    def generate_chart_data(self):
+    def generate_data_charts(self):
+        self.generate_by_activity()
+        self.generate_by_category()
+        self.generate_by_flag()
+
+    def generate_by_activity(self):
+        """Generate a simple pie chart."""
+        type_ = 'Activities'
         pie_chart = pygal.Pie(config=config)
-        pie_chart.title = self.user_name
+        pie_chart.title = type_
 
-        if not self.group_by_category:
-            for activity in self.activities:
-                pie_chart.add(
-                    activity.label, activity.daily_percentage,
-                )
+        for activity in self.activities:
+            pie_chart.add(
+                activity.label, activity.daily_percentage,
+            )
 
-        else:
-            self.populate_by_category(pie_chart)
+        self.file_manager.generate_chart_file(
+            pie_chart,
+            type_,
+        )
 
-        return pie_chart
+    def generate_by_category(self):
+        """Generate a multi-series pie chart grouping by category."""
+        type_ = 'Categories'
+        pie_chart = pygal.Pie(config=config)
+        pie_chart.title = type_
 
-    def populate_by_category(self, pie_chart):
         for category in self.activities.categories:
             values = []
             for activity in self.activities.get_all_items_by_category(
@@ -205,77 +176,41 @@ class TimeUse:
                 values=values,
             )
 
-
-class FileManager:
-    cwd = os.getcwd()
-
-    def __init__(self, input_filename):
-        self.input_filename = input_filename
-        self.output_filename = self.convert_filename_to_svg(input_filename)
-
-    @staticmethod
-    def convert_filename_to_svg(filename):
-        return os.path.splitext(filename)[0] + '.svg'
-
-    def read_csv_dict_like(self):
-        filepath = os.path.join(self.cwd, self.input_filename)
-
-        if not os.path.isfile(filepath):
-            raise FileNotFoundError
-
-        with open(filepath, 'r') as csv_file:
-            dict_like_data = [
-                row for row in csv.DictReader(csv_file)
-            ]
-
-        return dict_like_data
-
-    def generate_chart_file(self, chart_data):
-        chart_data.render_to_file(
-            os.path.join(
-                self.cwd,
-                self.output_filename,
-            ),
+        self.file_manager.generate_chart_file(
+            pie_chart,
+            type_
         )
 
+    def generate_by_flag(self):
+        """Generate a multi-series pie chart grouping by category."""
+        type_ = 'Flag'
+        pie_chart = pygal.Pie(config=config)
+        pie_chart.title = type_
 
-def main():
-    parser = argparse.ArgumentParser(description='Daily Activity Time')
-    parser.add_argument('file', help='Input csv file')
-    parser.add_argument(
-        '-m',
-        '--manual',
-        help='Enable to get data from user input instead of csv file',
-        action='store_true',
-    )
-    parser.add_argument(
-        '-hu',
-        '--hide_unassigned',
-        help='Enable to hide auto-generated "unassigned" activity',
-        action='store_true',
-    )
-    parser.add_argument(
-        '-g',
-        '--group_by_category',
-        help='Enable to generate a multi-series chart grouped by category',
-        action='store_true',
-    )
+        true_time = 0
+        false_time = 0
+        none_time = 0
 
-    args = parser.parse_args()
-    input_filename = args.file
-    auto = not args.manual
-    display_unassigned = not args.hide_unassigned
-    group_by_category = args.group_by_category
+        for activity in self.activities:
+            if activity.flag is True:
+                true_time += activity.minutes
+            elif activity.flag is False:
+                false_time += activity.minutes
+            elif activity.flag is None:
+                none_time += activity.minutes
 
-    time_use = TimeUse(
-        input_filename,
-        auto=auto,
-        display_unassigned=display_unassigned,
-        group_by_category=group_by_category,
-    )
+        mapper = (
+            'true', true_time,
+            'false', false_time,
+            'none', none_time,
+        )
 
-    time_use.run()
+        for label, value in mapper:
+            pie_chart.add(
+                label, value
+            )
 
-
-if __name__ == '__main__':
-    main()
+        self.file_manager.generate_chart_file(
+            pie_chart,
+            type_
+        )

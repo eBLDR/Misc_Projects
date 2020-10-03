@@ -1,5 +1,4 @@
-from life import settings
-from life import validate
+from life import settings, validate
 
 
 class DataManager:

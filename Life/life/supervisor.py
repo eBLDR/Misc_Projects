@@ -1,11 +1,10 @@
 import os
 import sys
-
 from collections import OrderedDict
 
+from life import settings
 from life.datamanager import DataManager
 from life.filemanager import FileManager
-from life import settings
 
 
 class Supervisor:
@@ -77,7 +76,7 @@ class Supervisor:
                     break
 
     def delete_user(self):
-        if input('Are you sure to delete user \033[1;31m{}\033[0m [y/n]:\n> '.format(self.user_name)).lower() =='y':
+        if input('Are you sure to delete user \033[1;31m{}\033[0m [y/n]:\n> '.format(self.user_name)).lower() == 'y':
             self.file_manager.delete_file(self.file_name)
             print('User and corresponding data deleted.')
             self.exit_(auto_save=False)
