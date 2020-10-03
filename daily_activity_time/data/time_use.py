@@ -178,7 +178,7 @@ class TimeUse:
 
         self.file_manager.generate_chart_file(
             pie_chart,
-            type_
+            type_,
         )
 
     def generate_by_flag(self):
@@ -193,16 +193,16 @@ class TimeUse:
 
         for activity in self.activities:
             if activity.flag is True:
-                true_time += activity.minutes
+                true_time += activity.daily_percentage
             elif activity.flag is False:
-                false_time += activity.minutes
+                false_time += activity.daily_percentage
             elif activity.flag is None:
-                none_time += activity.minutes
+                none_time += activity.daily_percentage
 
         mapper = (
-            'true', true_time,
-            'false', false_time,
-            'none', none_time,
+            ('true', true_time),
+            ('false', false_time),
+            ('none', none_time),
         )
 
         for label, value in mapper:
@@ -212,5 +212,5 @@ class TimeUse:
 
         self.file_manager.generate_chart_file(
             pie_chart,
-            type_
+            type_,
         )

@@ -9,7 +9,7 @@ class FileManager:
         self.input_filename = input_filename
 
     def convert_filename_to_svg(self, extra):
-        return f'{os.path.splitext(self.input_filename)[0]}{extra}.svg'
+        return f'{os.path.splitext(self.input_filename)[0]}_{extra.lower()}.svg'
 
     def read_csv_dict_like(self):
         filepath = os.path.join(self.cwd, self.input_filename)
