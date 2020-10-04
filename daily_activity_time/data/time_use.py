@@ -29,81 +29,34 @@ class TimeUse:
     def __init__(
             self,
             input_filename,
-            auto=True,
             display_unassigned=True,
     ):
-        # Mode `auto` for reading csv file, manual user input otherwise.
-        self.auto = auto
-
         # Enable to generate "unassigned" activity to represent unassigned time
         self.display_unassigned = display_unassigned
 
         self.file_manager = FileManager(input_filename)
 
-        self.user_name = ''
         self.minutes_available = DAILY_MINUTES
         self.activities = ActivityList()
 
     def run(self):
-        self.get_user_name()
+        self.get_activities_from_csv_file()
 
-        if self.auto:
-            self.get_activities_from_csv_file()
-
-            try:
-                self.assert_time()
-            except TimeExceededException as e:
-                print(e.msg)
-
-        else:
-            self.get_activities_from_user_input()
+        try:
+            self.assert_time()
+        except TimeExceededException as e:
+            print(e.msg)
 
         if self.display_unassigned:
             self.generate_unassigned_time_activity()
 
         self.generate_data_charts()
 
-    def get_user_name(self):
-        while not self.user_name:
-            if user_name := input('User name: '):
-                self.user_name = user_name
-
     def get_activities_from_csv_file(self):
         for activity in self.file_manager.read_csv_dict_like():
             self.activities.append(
                 Activity.from_dict(activity),
             )
-
-    def get_activities_from_user_input(self):
-        while self.minutes_available > 0:
-            self.get_activity_from_user_input()
-
-    def get_activity_from_user_input(self):
-        print(f'Minutes available: {self.minutes_available}')
-
-        while True:
-            label = input('Label: ')
-            if label:
-                break
-
-        while True:
-            minutes = input('Minutes: ')
-            if minutes.isdigit() and minutes != '0':
-                minutes = int(minutes)
-
-                if minutes <= self.minutes_available:
-                    break
-
-                print('Exceeding time!')
-
-        self.activities.append(
-            Activity(
-                label=label,
-                minutes=minutes,
-            )
-        )
-
-        self.minutes_available -= minutes
 
     def count_activities_total_time(self):
         total_time = 0
