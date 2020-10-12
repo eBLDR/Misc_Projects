@@ -1,4 +1,4 @@
-from data.constants import DAILY_MINUTES
+from daily_activity_time.constants import DAILY_MINUTES
 
 
 class Activity:

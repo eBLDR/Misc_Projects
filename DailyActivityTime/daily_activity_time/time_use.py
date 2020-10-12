@@ -9,10 +9,11 @@ label2,category1,false,minutes2
 ...,...
 """
 import pygal
-from data.activity import Activity, ActivityList
-from data.constants import DAILY_MINUTES
-from data.file_manager import FileManager
 from pygal.style import NeonStyle as Style
+
+from daily_activity_time.activity import Activity, ActivityList
+from daily_activity_time.constants import DAILY_MINUTES
+from daily_activity_time.file_manager import FileManager
 
 # Chart config
 config = pygal.Config()

@@ -1,6 +1,6 @@
 import argparse
 
-from data.time_use import TimeUse
+from daily_activity_time.time_use import TimeUse
 
 
 def main():
