@@ -6,12 +6,11 @@ from bowling_score.score import Score
 class Manager:
     def __init__(self):
         self.file_manager = FileManager()
-        self.score = None
+        self.score = Score()
         self.output_display = OutputDisplay()
 
     def main(self):
-        self.score = Score(
+        total_points = self.score.calculate(
             self.file_manager.read_json(),
         )
-        total_points = self.score.get_points()
         self.output_display.display(total_points)
