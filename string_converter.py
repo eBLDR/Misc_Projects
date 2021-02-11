@@ -1,3 +1,10 @@
+"""
+Casing types:
+snake_case
+camelCase
+PascalCase
+kebab-case
+"""
 # Camel to snake and snake to camel case converter
 
 
