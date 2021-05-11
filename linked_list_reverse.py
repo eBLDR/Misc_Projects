@@ -22,7 +22,7 @@ Sample Output
 
 
 class Node:
-    def __init__(self, value: int):
+    def __init__(self, value):
         self.value = value
         self.next = None
 
@@ -103,7 +103,7 @@ def main(max_value):
 
 def _run_suite():
     # Just for testing purposes
-    suite_max_values = [-5, 0, 1, 3, 5, 10]
+    suite_max_values = [0, 1, 3, 5, 10]
     for max_value in suite_max_values:
         print(f'MAX VALUE: {max_value}')
         main(max_value)
