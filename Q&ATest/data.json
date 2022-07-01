@@ -1,0 +1,603 @@
+{
+  "data": [
+    {
+      "question": "Life, in any world, is/has...",
+      "answer": [
+        "unstable",
+        "no shelter and no protector",
+        "nothing of its own",
+        "incomplete"
+      ]
+    },
+    {
+      "question": "The Three Marks of Existence (or Three Universal Characteristics",
+      "answer": [
+        "impermanence",
+        "suffering",
+        "impersonality (non-self)"
+      ]
+    },
+    {
+      "question": "The Four Noble Truths of...",
+      "answer": [
+        "suffering",
+        "origin of suffering",
+        "cessation of suffering",
+        "path leading to the cessation of suffering"
+      ]
+    },
+    {
+      "question": "Types of suffering",
+      "answer": [
+        "ordinary",
+        "produced by change",
+        "conditioned states"
+      ]
+    },
+    {
+      "question": "The Three Divine Messengers",
+      "answer": [
+        "ageing",
+        "sickness",
+        "death"
+      ]
+    },
+    {
+      "question": "The Origin of Suffering is",
+      "answer": [
+        "thirst, craving"
+      ]
+    },
+    {
+      "question": "Three Types of Thirst, thirst for",
+      "answer": [
+        "sensual-pleasure",
+        "being, becoming",
+        "non-existence"
+      ]
+    },
+    {
+      "question": "The Path leading to the cessation of suffering is",
+      "answer": [
+        "noble eightfold path"
+      ]
+    },
+    {
+      "question": "Avoiding extremes is",
+      "answer": [
+        "middle way"
+      ]
+    },
+    {
+      "question": "The Three Practices (or the Threefold Training)",
+      "answer": [
+        "ethical conduct",
+        "mental discipline",
+        "wisdom"
+      ]
+    },
+    {
+      "question": "The Noble Eightfold Path, right",
+      "answer": [
+        "view",
+        "intention",
+        "speech",
+        "action",
+        "livelihood",
+        "effort",
+        "mindfulness",
+        "concentration"
+      ]
+    },
+    {
+      "question": "Three Types of Right Intention, intention of",
+      "answer": [
+        "renunciation",
+        "good will",
+        "harmlessness"
+      ]
+    },
+    {
+      "question": "Right Speech is abstaining from speech that is",
+      "answer": [
+        "false",
+        "divisive",
+        "harsh",
+        "idle"
+      ]
+    },
+    {
+      "question": "Five Unworthy Trades, dealing with",
+      "answer": [
+        "weapons",
+        "animals for slaughter",
+        "human beings for slavery",
+        "intoxicants",
+        "poisons"
+      ]
+    },
+    {
+      "question": "The Four Great Efforts (or The Four Right Exertions)",
+      "answer": [
+        "prevention of unwholesome states from arising",
+        "abandonment of unwholesome states already arisen",
+        "arising of wholesome states not arisen",
+        "development of wholesome states already arisen"
+      ]
+    },
+    {
+      "question": "The Four Foundations of Mindfulness, Awareness or Contemplation of",
+      "answer": [
+        "body",
+        "sensations or feelings",
+        "mind",
+        "phenomena and mental contents"
+      ]
+    },
+    {
+      "question": "The Five Aggregates, the aggregate of",
+      "answer": [
+        "form",
+        "sensations or feelings",
+        "perceptions",
+        "mental formations",
+        "consciousness"
+      ]
+    },
+    {
+      "question": "The Four Great Elements",
+      "answer": [
+        "earth",
+        "water",
+        "fire",
+        "wind"
+      ]
+    },
+    {
+      "question": "The Internal Faculties",
+      "answer": [
+        "eye",
+        "ear",
+        "nose",
+        "tongue",
+        "body",
+        "mind"
+      ]
+    },
+    {
+      "question": "The Twelve Sense Bases",
+      "answer": [
+        "internal faculties",
+        "external objects"
+      ]
+    },
+    {
+      "question": "The Four Nutriments",
+      "answer": [
+        "ordinary food",
+        "contact",
+        "mental volitions",
+        "consciousness"
+      ]
+    },
+    {
+      "question": "Three Pairs of Duality, duality of",
+      "answer": [
+        "mortality",
+        "paths",
+        "substantiality"
+      ]
+    },
+    {
+      "question": "The Twelve Links of Dependent Origination (or Conditioned Genesis)",
+      "answer": [
+        "ignorance",
+        "mental formations",
+        "consciousness",
+        "mental and physical phenomena",
+        "six faculties",
+        "contact",
+        "sensations or feelings",
+        "thirst, craving",
+        "clinging",
+        "being, becoming",
+        "birth",
+        "decay, ageing, death, suffering"
+      ]
+    },
+    {
+      "question": "The Cylce of continuity is",
+      "answer": [
+        "samsara"
+      ]
+    },
+    {
+      "question": "The Cessation of Continuity is",
+      "answer": [
+        "nibbana"
+      ]
+    },
+    {
+      "question": "Two elements of Nibbana",
+      "answer": [
+        "with residue remaining",
+        "without residue remaining"
+      ]
+    },
+    {
+      "question": "The Sense-Sphere Realm, planes of",
+      "answer": [
+        "heavenly",
+        "human",
+        "animal",
+        "titans or demigods",
+        "hungry ghosts",
+        "hells"
+      ]
+    },
+    {
+      "question": "The Three Doors of Action",
+      "answer": [
+        "body",
+        "speech",
+        "mind"
+      ]
+    },
+    {
+      "question": "Bases for Meritorious actions",
+      "answer": [
+        "generosity",
+        "ethical conduct",
+        "mental development"
+      ]
+    },
+    {
+      "question": "Ten Wholesome Deeds",
+      "answer": [
+        "giving",
+        "meditation",
+        "service",
+        "rejoicing in the merit of others",
+        "teaching the dhamma",
+        "ethical conduct",
+        "reverence",
+        "dedication of merit",
+        "hearing the dhamma",
+        "straightening one's views"
+      ]
+    },
+    {
+      "question": "The Three Unwholesome Roots (or Three Poisons)",
+      "answer": [
+        "greed",
+        "hatred",
+        "delusion"
+      ]
+    },
+    {
+      "question": "Stages of the Defilements",
+      "answer": [
+        "latency or passivity",
+        "manifestation",
+        "transgression"
+      ]
+    },
+    {
+      "question": "Five Cords of Sensual Pleasures",
+      "answer": [
+        "forms",
+        "sounds",
+        "odours",
+        "flavours",
+        "tactile objects"
+      ]
+    },
+    {
+      "question": "Taints (or Influxes), taint of",
+      "answer": [
+        "sensual-pleasure",
+        "being, becoming",
+        "ignorance"
+      ]
+    },
+    {
+      "question": "Abandoning the taints by",
+      "answer": [
+        "seeing",
+        "restraining",
+        "using",
+        "enduring",
+        "avoiding",
+        "removing",
+        "developing"
+      ]
+    },
+    {
+      "question": "Three Kinds of Removal of Defilements",
+      "answer": [
+        "momentary",
+        "temporary",
+        "total"
+      ]
+    },
+    {
+      "question": "The Ten Fetters of Becoming",
+      "answer": [
+        "identity",
+        "doubt",
+        "adherence to rituals",
+        "sensual desire",
+        "hatred",
+        "existence in the worlds of Form",
+        "existence in the Formless worlds",
+        "conceit",
+        "restlessness",
+        "ignorance"
+      ]
+    },
+    {
+      "question": "The Five Hindrances",
+      "answer": [
+        "sensual desire",
+        "hatred",
+        "sloth and torpor",
+        "restlessness and worry",
+        "doubt"
+      ]
+    },
+    {
+      "question": "Two Types of Meditation",
+      "answer": [
+        "serenity",
+        "insight"
+      ]
+    },
+    {
+      "question": "Four Kinds of Concentration",
+      "answer": [
+        "momentary",
+        "preliminary",
+        "access",
+        "absorption"
+      ]
+    },
+    {
+      "question": "Concentration Signs",
+      "answer": [
+        "preliminary",
+        "learning",
+        "counterpart"
+      ]
+    },
+    {
+      "question": "Kinds of Seclusion",
+      "answer": [
+        "bodily",
+        "mental",
+        "by suppression",
+        "from the substance"
+      ]
+    },
+    {
+      "question": "The Eight Graduated Steps of Breathing Meditation",
+      "answer": [
+        "counting",
+        "following",
+        "contact",
+        "fixing",
+        "observing",
+        "turning away",
+        "purification",
+        "retrospection"
+      ]
+    },
+    {
+      "question": "The Immaterial Attainments of Concentration, base of",
+      "answer": [
+        "infinite space",
+        "infinite consciousness",
+        "nothingness",
+        "neither-perception-nor-non-perception",
+        "cessation"
+      ]
+    },
+    {
+      "question": "The Jhana Factors",
+      "answer": [
+        "applied thought",
+        "sustained thought",
+        "rapture",
+        "happiness",
+        "one-pointedness",
+        "equanimity"
+      ]
+    },
+    {
+      "question": "The Five Stages of Joy",
+      "answer": [
+        "slight",
+        "momentary",
+        "showering",
+        "uplifting",
+        "suffusing"
+      ]
+    },
+    {
+      "question": "Five Kinds of Mastery over the Attainments of Concentration, mastery in",
+      "answer": [
+        "adverting",
+        "attaining",
+        "resolving",
+        "emerging",
+        "reviewing"
+      ]
+    },
+    {
+      "question": "Contemplations of the Body, contemplations on",
+      "answer": [
+        "awareness of in-and-out breathing",
+        "the four postures",
+        "mindfulness of the action",
+        "unattractiveness",
+        "analysis into elements",
+        "cementery meditations"
+      ]
+    },
+    {
+      "question": "Contemplations of phenomena or mental objects",
+      "answer": [
+        "five hindrances",
+        "five aggregates",
+        "six sense bases",
+        "seven factors of enlightenment",
+        "four noble truths"
+      ]
+    },
+    {
+      "question": "The Six Higher Knowledges",
+      "answer": [
+        "higher powers",
+        "divine ear",
+        "mind-penetrating",
+        "remember one's former abodes",
+        "divine eye",
+        "extinction of mental intoxicants"
+      ]
+    },
+    {
+      "question": "Types of Wisdom",
+      "answer": [
+        "intellectual",
+        "reflective",
+        "insight"
+      ]
+    },
+    {
+      "question": "The Four Stages of Enlightenment (or Four Planes of Liberation)",
+      "answer": [
+        "stream-enterer",
+        "once-returner",
+        "non-returner",
+        "arahant"
+      ]
+    },
+    {
+      "question": "An Arahant can be liberated",
+      "answer": [
+        "in both ways",
+        "by wisdom"
+      ]
+    },
+    {
+      "question": "Seven Factors of Englightenment",
+      "answer": [
+        "mindfulness",
+        "investigation",
+        "energy",
+        "joy",
+        "tranquility",
+        "concentration",
+        "equanimity"
+      ]
+    },
+    {
+      "question": "The Four Bases for Spiritual Power",
+      "answer": [
+        "intention",
+        "effort",
+        "consciousness",
+        "investigation"
+      ]
+    },
+    {
+      "question": "The Five Mental Faculties",
+      "answer": [
+        "faith",
+        "energy",
+        "mindfulness",
+        "concentration",
+        "wisdom"
+      ]
+    },
+    {
+      "question": "Aids to Enlightenment",
+      "answer": [
+        "four foundations of mindfulness",
+        "four great efforts",
+        "four bases for spiritual power",
+        "five mental faculties",
+        "five powers",
+        "seven factors of enlightenment",
+        "noble eightfold path"
+      ]
+    },
+    {
+      "question": "The Four Immeasurables",
+      "answer": [
+        "loving kindness",
+        "compassion",
+        "appreciative joy",
+        "equanimity"
+      ]
+    },
+    {
+      "question": "The Six Perfections, perfection of",
+      "answer": [
+        "giving",
+        "behaviour and discipline",
+        "forbearance",
+        "vigour and diligence",
+        "meditation",
+        "transcendent wisdom"
+      ]
+    },
+    {
+      "question": "The Three Bodies",
+      "answer": [
+        "truth",
+        "mutual enjoyment",
+        "created"
+      ]
+    },
+    {
+      "question": "Three Refuges (or Triple Gem)",
+      "answer": [
+        "Buddha",
+        "Dhamma",
+        "Sangha"
+      ]
+    },
+    {
+      "question": "The Five Precepts, to refrain from",
+      "answer": [
+        "killing",
+        "stealing",
+        "sexual misconduct",
+        "incorrect speech",
+        "taking intoxicants"
+      ]
+    },
+    {
+      "question": "The Four Requisites",
+      "answer": [
+        "clothing",
+        "food",
+        "shelter",
+        "medicine"
+      ]
+    },
+    {
+      "question": "The Eight Worldly Preoccupations",
+      "answer": [
+        "pleasure",
+        "pain",
+        "gain",
+        "loss",
+        "fame",
+        "insignificance",
+        "praise",
+        "blame"
+      ]
+    }
+  ]
+}
